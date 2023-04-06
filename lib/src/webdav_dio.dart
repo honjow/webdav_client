@@ -159,8 +159,8 @@ class WdDio with DioMixin implements Dio {
   Future<Response> wdPropfind(
       Client self, String path, bool depth, String dataStr,
       {CancelToken? cancelToken}) async {
-    var resp = await this.req(self, 'PROPFIND', path,
-        data: dataStr, optionsHandler: (options) {
+    var resp = await this.req(self, 'PROPFIND', path, data: dataStr,
+        optionsHandler: (options) {
       options.headers?['depth'] = depth ? '1' : '0';
       options.headers?['content-type'] = 'application/xml;charset=UTF-8';
       options.headers?['accept'] = 'application/xml,text/xml';
@@ -354,7 +354,6 @@ class WdDio with DioMixin implements Dio {
             completer.completeError(DioMixin.assureDioError(
               err,
               resp.requestOptions,
-              stackTrace,
             ));
           }
         });
@@ -369,7 +368,6 @@ class WdDio with DioMixin implements Dio {
           completer.completeError(DioMixin.assureDioError(
             e,
             resp.requestOptions,
-            s,
           ));
         }
       },
@@ -380,7 +378,6 @@ class WdDio with DioMixin implements Dio {
           completer.completeError(DioMixin.assureDioError(
             e,
             resp.requestOptions,
-            s,
           ));
         }
       },
